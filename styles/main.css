@@ -97,6 +97,9 @@ h1{
 	height: 140px;
 	margin-top: 80px;
 }
+.article-image {
+    padding: 20px 0px 20px 0px;
+}
 .social-icons a i.fa{
 	font-size: 25px;
 	color: #fff;
