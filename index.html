@@ -219,5 +219,26 @@
 	</footer>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.4/SmoothScroll.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    </body>
+<script type="text/javascript">
+	$.ajax({
+        type: 'GET',
+        url: "http://cellar-c2.services.clever-cloud.com/recent-media/recent-uploads",
+        dataType: "json",
+        success: function (result) {
+            //var mediaJson = jQuery.parseJSON(result); already getting a object
+            if(result.error) {
+                $('#socialfeed-instagram').html('<p>'+result.error+'</p>');
+            }
+            else {
+            $.each(result.recentMedia, function (index, mediaObj) {
+               $('#socialfeed-instagram').append("<a href='"+mediaObj.link+"'><img src='"+mediaObj.thumbnail+"' alt=''></a>");
+            });
+            }
+        },
+        error: function (data) {
+            $('#socialfeed-instagram').html('<p class="error">Unable to fetch recent media from Instagram. Please refresh the page or contact site adminstrator</p>');
+        }
+    });
+</script>
+</body>
 </html>
